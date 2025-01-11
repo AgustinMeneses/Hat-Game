@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bse3nqof58hqq"]
+
+[ext_resource type="PackedScene" uid="uid://brcykac05oro1" path="res://world/player/scenes/hat.tscn" id="1"]
+[ext_resource type="Script" path="res://world/world/scripts/world.gd" id="1_v34lm"]
+[ext_resource type="PackedScene" uid="uid://cbesk3x1iqdox" path="res://world/person/scenes/person.tscn" id="2_bwqal"]
+
+[sub_resource type="BoxMesh" id="1"]
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(1, 1)
+
+[node name="World" type="Node"]
+script = ExtResource("1_v34lm")
+
+[node name="People" type="Node" parent="."]
+
+[node name="Person" parent="People" instance=ExtResource("2_bwqal")]
+position = Vector2(-60, 357)
+
+[node name="Person2" parent="People" instance=ExtResource("2_bwqal")]
+position = Vector2(410, 357)
+
+[node name="Person3" parent="People" instance=ExtResource("2_bwqal")]
+position = Vector2(920, 361)
+
+[node name="Person4" parent="People" instance=ExtResource("2_bwqal")]
+position = Vector2(1413, 361)
+
+[node name="Hat" parent="." groups=["player"] instance=ExtResource("1")]
+position = Vector2(-72, 206)
+rotation = -0.756975
+gravity_scale = 3.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(445, 503.5)
+scale = Vector2(2154, 161)
+mesh = SubResource("1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="MeshInstance2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D/StaticBody2D"]
+shape = SubResource("2")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
+position = Vector2(-1669, -104)
+rotation = 0.528667
+scale = Vector2(2154, 161)
+mesh = SubResource("1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="MeshInstance2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D2/StaticBody2D"]
+shape = SubResource("2")

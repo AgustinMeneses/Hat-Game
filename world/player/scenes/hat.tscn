@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://brcykac05oro1"]
+
+[ext_resource type="Texture2D" uid="uid://bgfxeqwv2dsxm" path="res://world/player/textures/hat.png" id="1"]
+[ext_resource type="Script" path="res://world/player/scripts/hat.gd" id="1_q40d8"]
+[ext_resource type="AudioStream" uid="uid://1bvr1bdu3x2q" path="res://world/player/sounds/throw.mp3" id="3_jes2b"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_71un1"]
+bounce = 1.0
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(11, 14)
+
+[node name="Hat" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_71un1")
+script = ExtResource("1_q40d8")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("1")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.28647e-05, 2.5)
+rotation = 1.5708
+scale = Vector2(5, 5)
+shape = SubResource("2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="ThrowSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jes2b")
