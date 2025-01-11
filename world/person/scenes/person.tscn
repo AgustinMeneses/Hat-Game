@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbesk3x1iqdox"]
+[gd_scene load_steps=8 format=3 uid="uid://cbesk3x1iqdox"]
 
 [ext_resource type="Texture2D" uid="uid://co1k5tiryxjes" path="res://world/person/textures/person.png" id="1_mnqk1"]
 [ext_resource type="Script" path="res://world/person/scripts/person.gd" id="1_pa5t4"]
+[ext_resource type="Texture2D" uid="uid://ck2peq88elbdl" path="res://world/person/textures/person_1.png" id="2_xsdpx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dexho"]
 atlas = ExtResource("1_mnqk1")
@@ -34,12 +35,22 @@ animations = [{
 size = Vector2(66, 20)
 
 [node name="Person" type="CharacterBody2D" groups=["people"]]
+collision_layer = 2
 script = ExtResource("1_pa5t4")
 
+[node name="Person1" type="Sprite2D" parent="."]
+position = Vector2(-9, -18)
+scale = Vector2(5, 5)
+texture = ExtResource("2_xsdpx")
+
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+visible = false
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_e2piv")
 animation = &"Idle"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(44, 11)
 
 [node name="HatPlace" type="Area2D" parent="."]
 
@@ -48,8 +59,9 @@ position = Vector2(0, -73)
 shape = SubResource("RectangleShape2D_nhy51")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 100.0
+wait_time = 0.2
 one_shot = true
 
 [connection signal="body_entered" from="HatPlace" to="." method="_on_hat_place_body_entered"]
+[connection signal="body_exited" from="HatPlace" to="." method="_on_hat_place_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
