@@ -1,0 +1,158 @@
+[gd_scene load_steps=14 format=3 uid="uid://bjcry3pd15ktj"]
+
+[ext_resource type="Script" path="res://world/ui/menu/scripts/ui.gd" id="1_4k51u"]
+[ext_resource type="FontFile" uid="uid://celnwnqmggaub" path="res://world/ui/menu/DePixelKlein.otf" id="2_lmno1"]
+[ext_resource type="Texture2D" uid="uid://h7r11lkv14su" path="res://world/ui/menu/textures/button_normal.png" id="3_8j1yh"]
+[ext_resource type="Texture2D" uid="uid://iukjqqw6fs3d" path="res://world/ui/menu/textures/button_hover.png" id="4_uh32g"]
+[ext_resource type="Texture2D" uid="uid://c1psjvvitr7td" path="res://world/world/Textures/sunset.png" id="5_dimp7"]
+[ext_resource type="Texture2D" uid="uid://bhf58e8v25kvr" path="res://world/world/Textures/3th layer.png" id="6_gad77"]
+[ext_resource type="Texture2D" uid="uid://bwx04siyh3xta" path="res://world/world/Textures/2nd layer.png" id="7_mrtkm"]
+[ext_resource type="Texture2D" uid="uid://3fm4bqeyh6jp" path="res://world/world/Textures/1st layer.png" id="8_y5mn2"]
+[ext_resource type="Texture2D" uid="uid://bgfxeqwv2dsxm" path="res://world/player/textures/hat.png" id="9_wscau"]
+
+[sub_resource type="FontVariation" id="FontVariation_pgnov"]
+base_font = ExtResource("2_lmno1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n4bp7"]
+texture = ExtResource("3_8j1yh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s15pf"]
+texture = ExtResource("4_uh32g")
+
+[sub_resource type="FontVariation" id="FontVariation_p4o3c"]
+base_font = ExtResource("2_lmno1")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_4k51u")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -48.0
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_pgnov")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n4bp7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s15pf")
+text = "Play"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = 17.0
+offset_right = 180.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_pgnov")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n4bp7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s15pf")
+text = "Credits"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = 82.0
+offset_right = 180.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_pgnov")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n4bp7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s15pf")
+text = "Quit"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(0, 210)
+scale = Vector2(0.6, 0.6)
+transform = Transform2D(0.6, 0, 0, 0.6, 0, 210)
+scroll_ignore_camera_zoom = true
+
+[node name="Layer 4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 71)
+motion_mirroring = Vector2(4950, 0)
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Layer 4"]
+self_modulate = Color(0.920995, 0.920995, 0.920995, 1)
+position = Vector2(937, 133)
+scale = Vector2(5, 5)
+texture = ExtResource("5_dimp7")
+
+[node name="Layer 3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 71)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(2475, 0)
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Layer 3"]
+self_modulate = Color(0.288518, 0.288518, 0.288518, 1)
+position = Vector2(937, 133)
+scale = Vector2(5, 5)
+texture = ExtResource("6_gad77")
+
+[node name="Layer 2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 71)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(2475, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Layer 2"]
+self_modulate = Color(0.233926, 0.233925, 0.233925, 1)
+position = Vector2(937, 133)
+scale = Vector2(5, 5)
+texture = ExtResource("7_mrtkm")
+
+[node name="Layer 1" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 71)
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(2475, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer 1"]
+self_modulate = Color(0.212305, 0.212305, 0.212305, 1)
+position = Vector2(937, 133)
+scale = Vector2(5, 5)
+texture = ExtResource("8_y5mn2")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 144.0
+offset_right = 260.0
+offset_bottom = 210.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.580392, 0.552941, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_fonts/font = SubResource("FontVariation_p4o3c")
+theme_override_font_sizes/font_size = 64
+text = "Parasite Topper"
+
+[node name="Hat" type="Sprite2D" parent="."]
+position = Vector2(638, 126)
+scale = Vector2(3, 3)
+texture = ExtResource("9_wscau")
+
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
