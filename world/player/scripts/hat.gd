@@ -9,23 +9,26 @@ var can_jump = false
 var is_on_person = false
 var person : PERSON
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	
 	_drain_life()
 	if Input.is_action_pressed("left_click"):
 		can_jump = true
-		jump_force = move_toward(jump_force, 1200, 25)
-		print(jump_force)
+		jump_force = move_toward(jump_force, 1600, 25)
 		
 	if Input.is_action_just_released("left_click") and can_jump and is_on_person:
+		person = null
 		is_on_person = false
 		can_jump = false
 		throw()
-		
+	if person:
+		global_position = person.marker_2d.global_position
 func throw():
 	var direction = (get_global_mouse_position() - global_position).normalized()
 	var linear_impulse = direction * jump_force
 	gravity_scale = 3
 	apply_impulse(linear_impulse)
+
 	$ThrowSound.pitch_scale = randf_range(0.8, 1.2)
 	$ThrowSound.play()
 	jump_force = 400
@@ -37,8 +40,10 @@ func _drain_life():
 			_ded()
 			return
 	else:
+		global_position = person.collision.global_position
 		life += 0.02
 		if life >= 20:
 			life = 20
+
 func _ded():
 	queue_free()

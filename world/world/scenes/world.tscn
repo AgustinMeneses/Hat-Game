@@ -1,53 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://bse3nqof58hqq"]
+[gd_scene load_steps=8 format=3 uid="uid://bse3nqof58hqq"]
 
 [ext_resource type="PackedScene" uid="uid://brcykac05oro1" path="res://world/player/scenes/hat.tscn" id="1"]
 [ext_resource type="Script" path="res://world/world/scripts/world.gd" id="1_v34lm"]
-[ext_resource type="PackedScene" uid="uid://cbesk3x1iqdox" path="res://world/person/scenes/person.tscn" id="2_bwqal"]
+[ext_resource type="PackedScene" uid="uid://bylnnl88nmoml" path="res://world/Rooms/room_1.tscn" id="4_3v76x"]
+[ext_resource type="PackedScene" uid="uid://bfcqeexovl0qn" path="res://world/Rooms/room_2.tscn" id="4_32act"]
+[ext_resource type="PackedScene" uid="uid://nh8hccre78v7" path="res://world/Rooms/room_3.tscn" id="5_elha0"]
 
-[sub_resource type="BoxMesh" id="1"]
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5vcmj"]
+resource_name = "Rooms"
+scenes/0/scene = ExtResource("4_3v76x")
+scenes/1/scene = ExtResource("4_32act")
+scenes/2/scene = ExtResource("5_elha0")
 
-[sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(1, 1)
+[sub_resource type="TileSet" id="TileSet_y3ky6"]
+tile_size = Vector2i(2150, 1700)
+sources/0 = SubResource("TileSetScenesCollectionSource_5vcmj")
 
-[node name="World" type="Node"]
+[node name="World" type="Node" groups=["Level"]]
 script = ExtResource("1_v34lm")
 
-[node name="People" type="Node" parent="."]
-
-[node name="Person" parent="People" instance=ExtResource("2_bwqal")]
-position = Vector2(-60, 357)
-
-[node name="Person2" parent="People" instance=ExtResource("2_bwqal")]
-position = Vector2(410, 357)
-
-[node name="Person3" parent="People" instance=ExtResource("2_bwqal")]
-position = Vector2(920, 361)
-
-[node name="Person4" parent="People" instance=ExtResource("2_bwqal")]
-position = Vector2(1413, 361)
-
 [node name="Hat" parent="." groups=["player"] instance=ExtResource("1")]
-position = Vector2(-72, 206)
+position = Vector2(140, 382)
 rotation = -0.756975
 gravity_scale = 3.0
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(445, 503.5)
-scale = Vector2(2154, 161)
-mesh = SubResource("1")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="MeshInstance2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D/StaticBody2D"]
-shape = SubResource("2")
-
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
-position = Vector2(-1669, -104)
-rotation = 0.528667
-scale = Vector2(2154, 161)
-mesh = SubResource("1")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="MeshInstance2D2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D2/StaticBody2D"]
-shape = SubResource("2")
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_y3ky6")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0)
