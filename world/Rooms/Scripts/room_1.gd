@@ -9,7 +9,6 @@ func _ready():
 	$"Collision Area".connect("body_entered", body_entered)
 	for i in markers:
 		if randi_range(0,3) == 1:
-			print("hola")
 			var person = persons.instantiate()
 			add_child(person)
 			person.global_position = i.global_position

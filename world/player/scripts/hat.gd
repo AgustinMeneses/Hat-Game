@@ -45,6 +45,7 @@ func _drain_life():
 		life += 0.06
 		if life >= 20:
 			life = 20
-
+	$CanvasLayer/UI/Lifebar.value = life
 func _ded():
+	print("dead")
 	set_process(false)
