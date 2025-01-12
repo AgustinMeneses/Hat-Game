@@ -3,7 +3,7 @@ class_name HAT extends RigidBody2D
 @export var life : float = 20
 @export var DAMAGE : float = 0.5
 
-var draining_speed = 0.05
+var draining_speed = 0.08
 var jump_force = 400
 var can_jump = false
 var is_on_person = false
@@ -41,9 +41,9 @@ func _drain_life():
 			return
 	else:
 		global_position = person.collision.global_position
-		life += 0.02
+		life += 0.06
 		if life >= 20:
 			life = 20
 
 func _ded():
-	queue_free()
+	set_process(false)

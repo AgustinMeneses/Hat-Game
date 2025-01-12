@@ -27,6 +27,7 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://Assets/": "red",
+"res://Shaders/": "red",
 "res://world/": "orange"
 }
 
