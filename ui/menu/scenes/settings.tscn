@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce5ls7f7cvtbn"]
+
+[ext_resource type="Script" path="res://ui/menu/scripts/settings.gd" id="1_5xbuk"]
+[ext_resource type="FontFile" uid="uid://celnwnqmggaub" path="res://ui/menu/DePixelKlein.otf" id="2_qom11"]
+[ext_resource type="StyleBox" uid="uid://dpx7rjh37a78k" path="res://ui/new_style_box_texture.tres" id="3_5is8t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6aijd"]
+font = ExtResource("2_qom11")
+font_size = 25
+
+[node name="Settings" type="Panel"]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5xbuk")
+
+[node name="FullScreen" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -297.0
+offset_right = -16.0
+offset_bottom = -265.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.21628, 2.21628)
+theme_override_fonts/font = ExtResource("2_qom11")
+theme_override_styles/normal = ExtResource("3_5is8t")
+theme_override_styles/hover = ExtResource("3_5is8t")
+theme_override_styles/pressed = ExtResource("3_5is8t")
+text = "Fullscreen"
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -281.0
+offset_top = -50.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "press esc to get out"
+label_settings = SubResource("LabelSettings_6aijd")
+
+[connection signal="pressed" from="FullScreen" to="." method="_on_full_screen_pressed"]

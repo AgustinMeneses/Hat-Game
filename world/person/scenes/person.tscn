@@ -1,10 +1,12 @@
-[gd_scene load_steps=43 format=3 uid="uid://cbesk3x1iqdox"]
+[gd_scene load_steps=45 format=3 uid="uid://cbesk3x1iqdox"]
 
 [ext_resource type="Script" path="res://world/person/scripts/person.gd" id="1_pa5t4"]
 [ext_resource type="Texture2D" uid="uid://ck2peq88elbdl" path="res://world/person/textures/person_1.png" id="2_xsdpx"]
 [ext_resource type="Texture2D" uid="uid://dtpf3em5uvqr1" path="res://world/person/textures/person_1 skin.png" id="3_odpmh"]
 [ext_resource type="Texture2D" uid="uid://bni823bfdyvdb" path="res://world/person/textures/Blood texture.png" id="5_0qsus"]
 [ext_resource type="AudioStream" uid="uid://qxhittny0771" path="res://world/person/sounds/blood sound.mp3" id="5_4lx85"]
+[ext_resource type="Texture2D" uid="uid://ckaogdfpd24mh" path="res://world/world/Textures/charg bar.png" id="6_0knhw"]
+[ext_resource type="Texture2D" uid="uid://cl7crulq77eau" path="res://world/world/Textures/charg bar medidor.png" id="7_mpauy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mlsb2"]
 radius = 27.0
@@ -560,7 +562,8 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Person" type="AnimatedSprite2D" parent="."]
-position = Vector2(31, -8)
+z_index = -2
+position = Vector2(-5, -8)
 rotation = -6.72361e-05
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_2vldq")
@@ -577,7 +580,7 @@ libraries = {
 }
 
 [node name="HatPlace" type="Area2D" parent="Person"]
-position = Vector2(-6.20011, 1.59958)
+position = Vector2(0.99989, 1.60006)
 rotation = 6.72361e-05
 scale = Vector2(0.2, 0.2)
 collision_mask = 4
@@ -602,18 +605,23 @@ lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -72.0
-offset_top = -115.0
-offset_right = 85.0
-offset_bottom = -88.0
-max_value = 5.0
-step = -0.01
-show_percentage = false
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_4lx85")
 pitch_scale = 1.25
+bus = &"SFX"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+z_index = -4
+offset_left = -86.0
+offset_top = 40.0
+offset_right = 94.0
+offset_bottom = 160.0
+rotation = -1.57116
+scale = Vector2(0.573955, 0.573955)
+max_value = 5.0
+value = 5.0
+texture_under = ExtResource("6_0knhw")
+texture_progress = ExtResource("7_mpauy")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Person/HatPlace" to="." method="_on_hat_place_body_entered"]
