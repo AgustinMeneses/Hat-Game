@@ -2,30 +2,34 @@ class_name HAT extends RigidBody2D
 
 @export var life : float = 20
 @export var DAMAGE : float = 0.5
+@onready var line_2d = $Line2D
 
-var draining_speed = 0.05
+var draining_speed = 0.08
 var jump_force = 400
 var can_jump = false
 var is_on_person = false
-var person : PERSON
+var person = null
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	
 	_drain_life()
 	if Input.is_action_pressed("left_click"):
 		can_jump = true
-		jump_force = move_toward(jump_force, 1200, 25)
-		print(jump_force)
+		jump_force = move_toward(jump_force, 1600, 25)
 		
 	if Input.is_action_just_released("left_click") and can_jump and is_on_person:
+		person = null
 		is_on_person = false
 		can_jump = false
 		throw()
-		
+	if person:
+		global_position = person.marker_2d.global_position
 func throw():
 	var direction = (get_global_mouse_position() - global_position).normalized()
 	var linear_impulse = direction * jump_force
 	gravity_scale = 3
 	apply_impulse(linear_impulse)
+
 	$ThrowSound.pitch_scale = randf_range(0.8, 1.2)
 	$ThrowSound.play()
 	jump_force = 400
@@ -37,8 +41,11 @@ func _drain_life():
 			_ded()
 			return
 	else:
-		life += 0.02
+		global_position = person.collision.global_position
+		life += 0.06
 		if life >= 20:
 			life = 20
+	$CanvasLayer/UI/Lifebar.value = life
 func _ded():
-	queue_free()
+	print("dead")
+	set_process(false)

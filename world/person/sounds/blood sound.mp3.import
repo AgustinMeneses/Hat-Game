@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://qxhittny0771"
+path="res://.godot/imported/blood sound.mp3-de2c847597bc31b9e28e9fa44ab0c5f8.mp3str"
+
+[deps]
+
+source_file="res://world/person/sounds/blood sound.mp3"
+dest_files=["res://.godot/imported/blood sound.mp3-de2c847597bc31b9e28e9fa44ab0c5f8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
