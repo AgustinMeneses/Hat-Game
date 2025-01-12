@@ -52,6 +52,7 @@ func _on_hat_place_body_entered(body: HAT) -> void:
 
 func shake_screen(time: float, force: float):
 	Global.camera._shake(time, force)
+	$AudioStreamPlayer.pitch_scale = randf_range(0.9, 1.2)
 
 func die():
 	var rid = hat.get_rid()

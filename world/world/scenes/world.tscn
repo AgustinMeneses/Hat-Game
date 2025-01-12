@@ -1,30 +1,93 @@
-[gd_scene load_steps=8 format=3 uid="uid://bse3nqof58hqq"]
+[gd_scene load_steps=14 format=3 uid="uid://bse3nqof58hqq"]
 
 [ext_resource type="PackedScene" uid="uid://brcykac05oro1" path="res://world/player/scenes/hat.tscn" id="1"]
 [ext_resource type="Script" path="res://world/world/scripts/world.gd" id="1_v34lm"]
 [ext_resource type="PackedScene" uid="uid://bylnnl88nmoml" path="res://world/Rooms/room_1.tscn" id="4_3v76x"]
 [ext_resource type="PackedScene" uid="uid://bfcqeexovl0qn" path="res://world/Rooms/room_2.tscn" id="4_32act"]
 [ext_resource type="PackedScene" uid="uid://nh8hccre78v7" path="res://world/Rooms/room_3.tscn" id="5_elha0"]
+[ext_resource type="PackedScene" uid="uid://fe1mypt5e1ol" path="res://world/Rooms/room_4.tscn" id="6_1mlhw"]
+[ext_resource type="Texture2D" uid="uid://c1psjvvitr7td" path="res://world/world/Textures/sunset.png" id="7_ilbfe"]
+[ext_resource type="Texture2D" uid="uid://3fm4bqeyh6jp" path="res://world/world/Textures/1st layer.png" id="7_ilih7"]
+[ext_resource type="Texture2D" uid="uid://bhf58e8v25kvr" path="res://world/world/Textures/3th layer.png" id="8_2vdc5"]
+[ext_resource type="Texture2D" uid="uid://bwx04siyh3xta" path="res://world/world/Textures/2nd layer.png" id="9_vshx2"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5vcmj"]
 resource_name = "Rooms"
 scenes/0/scene = ExtResource("4_3v76x")
 scenes/1/scene = ExtResource("4_32act")
 scenes/2/scene = ExtResource("5_elha0")
+scenes/3/scene = ExtResource("6_1mlhw")
 
 [sub_resource type="TileSet" id="TileSet_y3ky6"]
 tile_size = Vector2i(2150, 1700)
 sources/0 = SubResource("TileSetScenesCollectionSource_5vcmj")
 
+[sub_resource type="BoxMesh" id="BoxMesh_ndpag"]
+
 [node name="World" type="Node" groups=["Level"]]
 script = ExtResource("1_v34lm")
 
 [node name="Hat" parent="." groups=["player"] instance=ExtResource("1")]
+z_index = 20
 position = Vector2(140, 382)
 rotation = -0.756975
 gravity_scale = 3.0
 
 [node name="TileMap" type="TileMap" parent="."]
+z_index = 20
 tile_set = SubResource("TileSet_y3ky6")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 0, 0)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Layer 4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 71)
+motion_mirroring = Vector2(4950, 0)
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Layer 4"]
+self_modulate = Color(0.920995, 0.920995, 0.920995, 1)
+position = Vector2(937, 133)
+scale = Vector2(5, 5)
+texture = ExtResource("7_ilbfe")
+
+[node name="Layer 3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 71)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(2475, 0)
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Layer 3"]
+self_modulate = Color(0.288518, 0.288518, 0.288518, 1)
+position = Vector2(937, 133)
+scale = Vector2(5, 5)
+texture = ExtResource("8_2vdc5")
+
+[node name="Layer 2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 71)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(2475, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Layer 2"]
+self_modulate = Color(0.233926, 0.233925, 0.233925, 1)
+position = Vector2(937, 133)
+scale = Vector2(5, 5)
+texture = ExtResource("9_vshx2")
+
+[node name="Layer 1" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 71)
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(2475, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer 1"]
+self_modulate = Color(0.212305, 0.212305, 0.212305, 1)
+position = Vector2(937, 133)
+scale = Vector2(5, 5)
+texture = ExtResource("7_ilih7")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(307, 1120)
+scale = Vector2(1214.25, 816.25)
+mesh = SubResource("BoxMesh_ndpag")

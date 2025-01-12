@@ -2,6 +2,7 @@ class_name HAT extends RigidBody2D
 
 @export var life : float = 20
 @export var DAMAGE : float = 0.5
+@onready var line_2d = $Line2D
 
 var draining_speed = 0.08
 var jump_force = 400
@@ -14,7 +15,7 @@ func _process(_delta: float) -> void:
 	_drain_life()
 	if Input.is_action_pressed("left_click"):
 		can_jump = true
-		jump_force = move_toward(jump_force, 1600, 25)
+		jump_force = move_toward(jump_force, 1850, 25)
 		
 	if Input.is_action_just_released("left_click") and can_jump and is_on_person:
 		person = null
